@@ -1,25 +1,27 @@
 import React from "react";
 
 var interval;
-class Timer extends React.Component{
+class number extends React.Component{
     constructor(){
       super();
       this.state = {
-        time : new Date().toLocaleTimeString()
+        number : 10
       }
     }
     componentDidMount(){
+        console.log("componentDidMount");
+        
         interval = setInterval(() => {
         this.setState({
-          time : new Date().toLocaleTimeString()
+          number : this.state.number - 1
         })
       } ,1000)
     }
 
     componentDidUpdate(){
         console.log("componentDidUpdate")
-
-        if(this.state.time === "12:32:25 AM"){
+        
+        if(this.state.number === "0"){
             clearInterval(interval);
         }
     }
@@ -31,10 +33,10 @@ class Timer extends React.Component{
       
       return(
         <h2 className='timer'>
-          it's {this.state.time}
+          it's {this.state.number}
         </h2>
       )
     }
   }
 
-export default Timer;
+export default number;
