@@ -1,30 +1,44 @@
 import React from "react";
 
 var interval;
+
 class number extends React.Component{
     constructor(){
       super();
       this.state = {
-        number : 10
+        number : 0
       }
     }
-    componentDidMount(){
-        console.log("componentDidMount");
 
+    setStart =()=>{
         interval = setInterval(() => {
-        this.setState({
-          number : this.state.number - 1
-        })
-      } ,1000)
+            this.setState({
+              number : this.state.number + 1
+            })
+          } ,1000)
+    }
+    
+    // componentDidMount(){
+    //     console.log("componentDidMount");
+
+    //     interval = setInterval(() => {
+    //     this.setState({
+    //       number : this.state.number + 1
+    //     })
+    //   } ,1000)
+    // }
+
+    setStop =()=>{
+        clearInterval(interval);
     }
 
-    componentDidUpdate(){
-        console.log("componentDidUpdate")
+    // componentDidUpdate(){
+    //     console.log("componentDidUpdate")
         
-        if(this.state.number === 0){
-            clearInterval(interval);
-        }
-    }
+    //     if(this.state.number === 0){
+    //         clearInterval(interval);
+    //     }
+    // }
 
     componentWillUnmount(){
         console.log("componentWillUnmount")
@@ -36,9 +50,20 @@ class number extends React.Component{
             <h2 className='timer'>
                 it's {this.state.number}
             </h2>
+
             <button onClick={this.props.x}>
                 click me
             </button>
+
+            <button onClick={this.setStart}>
+                START
+            </button>
+
+            <button onClick={this.setStop}>
+                STOP
+            </button>
+
+
         </>
       )
     }
