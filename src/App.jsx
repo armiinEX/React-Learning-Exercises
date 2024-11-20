@@ -3,11 +3,23 @@ import Timer from './Timer';
 import Hello from './Hello';
 
 class App extends React.Component {
+    constructor(){
+        super();
+        this.state = {
+            title : "سلام دوستان عزیز"
+        }
+    }
+
+    handelSetState =()=>{
+        this.setState({
+            title : "به react خوش آمدید"
+        })
+    }
   render() {
     return (
       <div className="main">
-        <Hello />
-        <Timer />
+        <Hello title={this.state.title}/>
+        <Timer x={this.handelSetState}/>
       </div>
     );
   }

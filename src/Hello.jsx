@@ -4,7 +4,7 @@ import React from "react";
 class Hello extends React.Component{
     render(){
       return(
-        <h1>hi friends</h1>
+        <h1>{this.props.title}</h1>
       )
     }
   }

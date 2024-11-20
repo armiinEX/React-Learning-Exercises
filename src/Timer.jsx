@@ -10,7 +10,7 @@ class number extends React.Component{
     }
     componentDidMount(){
         console.log("componentDidMount");
-        
+
         interval = setInterval(() => {
         this.setState({
           number : this.state.number - 1
@@ -21,7 +21,7 @@ class number extends React.Component{
     componentDidUpdate(){
         console.log("componentDidUpdate")
         
-        if(this.state.number === "0"){
+        if(this.state.number === 0){
             clearInterval(interval);
         }
     }
@@ -32,9 +32,14 @@ class number extends React.Component{
     render(){
       
       return(
-        <h2 className='timer'>
-          it's {this.state.number}
-        </h2>
+        <>
+            <h2 className='timer'>
+                it's {this.state.number}
+            </h2>
+            <button onClick={this.props.x}>
+                click me
+            </button>
+        </>
       )
     }
   }
