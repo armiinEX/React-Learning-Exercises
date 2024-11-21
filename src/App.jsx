@@ -1,47 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Timer from './Timer';
 import Hello from './Hello';
 
 
 const App =()=>{
-  const[title, setTitle] = useState("سلام دوستان عزیز")
-  const handelSeTitle =()=>{
+  const [title, setTitle] = useState("سلام دوستان عزیز");
+  const [light, setLight] = useState(false);
+  
+  const handelSetTitle =()=>{
     setTitle("به react خوش آمدید")
   }
+  const handelSetLight =()=>{
+    setLight(!light)
+  }
+  useEffect(()=>{
+    console.log("useEffect")
+  },[light])
 
   return (
-    <div className="main">
+    <div className="main" style={{background: light ? "white" : "black"}}>
       <Hello title={title}/>
-      <Timer handelSeTitle={handelSeTitle}/>
+      <Timer light={light} handelSetTitle={handelSetTitle} handelSetLight={handelSetLight}/>
     </div>
   );
 
 }
-
-
-
-// class App extends React.Component {
-//     constructor(){
-//         super();
-//         this.state = {
-//             title : "سلام دوستان عزیز"
-//         }
-//     }
-
-//     handelSetState =()=>{
-//         this.setState({
-//             title : "به react خوش آمدید"
-//         })
-//     }
-//   render() {
-//     return (
-//       <div className="main">
-//         <Hello title={this.state.title}/>
-//         <Timer x={this.handelSetState}/>
-//       </div>
-//     );
-//   }
-// }
 
 export default App;
 

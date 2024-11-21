@@ -65,7 +65,7 @@ class number extends React.Component{
                 it's {`${h > 9 ? h : "0"+h} : ${m > 9 ? m : "0"+m} : ${s > 9 ? s : "0"+s}`}
             </h2>
 
-            <button onClick={this.props.handelSeTitle}>
+            <button onClick={this.props.handelSetTitle}>
                 click me
             </button>
             
@@ -80,6 +80,12 @@ class number extends React.Component{
             <button onClick={this.stopInterval}>
                 STOP
             </button>
+
+            <button onClick={this.props.handelSetLight} style={{background: this.props.light ? "black" : "white", color: this.props.light ? "white" : "black"}}>
+                LIGHT
+            </button>
+
+
 
 
 
