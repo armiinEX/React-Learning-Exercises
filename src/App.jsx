@@ -5,14 +5,14 @@ import Hello from './Hello';
 
 const App =()=>{
   const[title, setTitle] = useState("سلام دوستان عزیز")
-  const handelSetState =()=>{
+  const handelSeTitle =()=>{
     setTitle("به react خوش آمدید")
   }
 
   return (
     <div className="main">
       <Hello title={title}/>
-      <Timer x={handelSetState}/>
+      <Timer handelSeTitle={handelSeTitle}/>
     </div>
   );
 

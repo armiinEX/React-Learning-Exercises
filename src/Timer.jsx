@@ -65,7 +65,7 @@ class number extends React.Component{
                 it's {`${h > 9 ? h : "0"+h} : ${m > 9 ? m : "0"+m} : ${s > 9 ? s : "0"+s}`}
             </h2>
 
-            <button onClick={this.props.x}>
+            <button onClick={this.props.handelSeTitle}>
                 click me
             </button>
             
