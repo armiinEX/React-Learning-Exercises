@@ -6,62 +6,81 @@ class number extends React.Component{
     constructor(){
       super();
       this.state = {
-        number : 0
-      }
+        hour:0,
+        minute:0,
+        secound:0,
+        isStart:false
+    }   
     }
 
-    setStart =()=>{
-        interval = setInterval(() => {
+    startInterval =()=>{
+        if (this.state.isStart === false){
             this.setState({
-              number : this.state.number + 1
+                isStart: true
             })
-          } ,1000)
+            interval = setInterval(() => {
+                this.setState({
+                  secound : this.state.secound + 1
+                })
+                if (this.state.secound === 60){
+                    this.setState({
+                        secound: 0,
+                        minute: this.state.minute + 1
+                    })
+                }
+                if (this.state.minute === 60){
+                    this.setState({
+                        minute: 0,
+                        hour: this.state.hour + 1
+                    })
+                }
+              } ,1000)
+        }
     }
-    
-    // componentDidMount(){
-    //     console.log("componentDidMount");
 
-    //     interval = setInterval(() => {
-    //     this.setState({
-    //       number : this.state.number + 1
-    //     })
-    //   } ,1000)
-    // }
-
-    setStop =()=>{
+    stopInterval =()=>{
+        this.setState({
+            isStart: false
+        })
         clearInterval(interval);
     }
 
-    // componentDidUpdate(){
-    //     console.log("componentDidUpdate")
-        
-    //     if(this.state.number === 0){
-    //         clearInterval(interval);
-    //     }
-    // }
-
-    componentWillUnmount(){
-        console.log("componentWillUnmount")
+    resetInterval =()=>{
+        this.stopInterval();
+        this.setState({
+            secound: 0,
+            minute: 0,
+            hour: 0
+        })
     }
+    
     render(){
+        let h = this.state.hour;
+        let m = this.state.minute;
+        let s = this.state.secound;
       
       return(
         <>
             <h2 className='timer'>
-                it's {this.state.number}
+                it's {`${h > 9 ? h : "0"+h} : ${m > 9 ? m : "0"+m} : ${s > 9 ? s : "0"+s}`}
             </h2>
 
             <button onClick={this.props.x}>
                 click me
             </button>
+            
+            <button onClick={this.resetInterval}>
+                RESET
+            </button>
 
-            <button onClick={this.setStart}>
+            <button onClick={this.startInterval}>
                 START
             </button>
 
-            <button onClick={this.setStop}>
+            <button onClick={this.stopInterval}>
                 STOP
             </button>
+
 
 
         </>
