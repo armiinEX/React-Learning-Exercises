@@ -1,5 +1,6 @@
 import React from "react";
 import TimeList from "./TimeList";
+import { TestContext } from "./testContext";
 
 var interval;
 
@@ -13,6 +14,8 @@ class number extends React.Component{
         isStart:false
     }   
     }
+
+    static contextType = TestContext;
 
     startInterval =()=>{
         if (this.state.isStart === false){
@@ -60,7 +63,7 @@ class number extends React.Component{
         let m = this.state.minute;
         let s = this.state.secound;
         let newTime = `${h > 9 ? h : "0"+h} : ${m > 9 ? m : "0"+m} : ${s > 9 ? s : "0"+s}`
-        this.props.setTimeArr([...this.props.timeArr, newTime])
+        this.context.setTimeArr([...this.context.timeArr, newTime])
     }
     
     render(){
@@ -69,37 +72,36 @@ class number extends React.Component{
         let s = this.state.secound;
       
       return(
-        <div>
-            <h2 className='timer' onClick={this.handelSaveTime}>
+        <div className="flex justify-center flex-col items-center">
+            <h2 className='timer' onClick={this.handelSaveTime} style={{color: this.context}}>
                 it's {`${h > 9 ? h : "0"+h} : ${m > 9 ? m : "0"+m} : ${s > 9 ? s : "0"+s}`}
             </h2>
 
-            <button className="m-3 p-3" onClick={this.props.handelSetTitle}>
-                click me
-            </button>
-            
-            <button className="m-3 p-3" onClick={this.resetInterval}>
-                RESET
-            </button>
+            <div className="m-5 p-5">
+                <button className="m-3 p-3" onClick={this.props.handelSetTitle} style={{background: this.props.light ? "black" : "white", color: this.props.light ? "white" : "black"}}>
+                    click me
+                </button>
+                
+                <button className="m-3 p-3" onClick={this.resetInterval} style={{background: this.props.light ? "black" : "white", color: this.props.light ? "white" : "black"}}>
+                    RESET
+                </button>
 
-            <button className="m-3 p-3" onClick={this.startInterval}>
-                START
-            </button>
+                <button className="m-3 p-3" onClick={this.startInterval} style={{background: this.props.light ? "black" : "white", color: this.props.light ? "white" : "black"}}>
+                    START
+                </button>
 
-            <button className="m-3 p-3" onClick={this.stopInterval}>
-                STOP
-            </button>
+                <button className="m-3 p-3" onClick={this.stopInterval} style={{background: this.props.light ? "black" : "white", color: this.props.light ? "white" : "black"}}>
+                    STOP
+                </button>
 
-            <button className="m-3 p-3" onClick={this.props.handelSetLight} style={{background: this.props.light ? "black" : "white", color: this.props.light ? "white" : "black"}}>
-                LIGHT
-            </button>
+                <button className="m-3 p-3" onClick={this.props.handelSetLight} style={{background: this.props.light ? "black" : "white", color: this.props.light ? "white" : "black"}}>
+                    LIGHT
+                </button>
+            </div>
 
             <TimeList>
-                {this.props.timeArr}
+                {this.context.timeArr}
             </TimeList>
-
-
-
 
         </div>
       )

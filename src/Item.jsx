@@ -1,8 +1,12 @@
+import { useContext } from "react";
+import { TestContext } from "./testContext";
+
 const Item =(props)=>{
+    const rangg = useContext(TestContext);
     return(
-        <dev>
+        <div style={{color: rangg}}>
             {props.children}
-        </dev>
+        </div>
     )
 }
 export default Item;

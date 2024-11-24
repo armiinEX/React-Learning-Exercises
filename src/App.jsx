@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Timer from './Timer';
 import Hello from './Hello';
 import TimeList from './TimeList';
+import { TestContext } from './testContext';
 
 
 const App =()=>{
@@ -20,16 +21,19 @@ const App =()=>{
   },[light])
 
   return (
-    <div className="main" style={{background: light ? "white" : "black"}}>
-      <Hello title={title}/>
-      <Timer light={light}
-       handelSetTitle={handelSetTitle}
-       handelSetLight={handelSetLight}
-       timeArr={timeArr}
-       setTimeArr={setTimeArr}
-       />
-      
-    </div>
+    <TestContext.Provider value={{
+      timeArr : timeArr,
+      setTimeArr : setTimeArr
+      }}>
+      <div className="main" style={{background: light ? "white" : "black"}}>
+        <Hello title={title}/>
+        <Timer light={light}
+        handelSetTitle={handelSetTitle}
+        handelSetLight={handelSetLight}
+        />
+        
+      </div>
+    // </TestContext.Provider>
   );
 
 }
